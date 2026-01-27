@@ -1,6 +1,19 @@
-# Hardcoded values for the season and plant type
-season = "summer"  # TODO: Replace with input() to allow user interaction.
-plant_type = "flower"  # TODO: Replace with input() to allow user interaction.
+ALLOWED_SEASONS = {"summer", "winter"}
+ALLOWED_PLANT_TYPES = {"flower", "vegetable"}
+
+
+def prompt_choice(label: str, allowed: set[str]) -> str:
+    allowed_display = ", ".join(sorted(allowed))
+    while True:
+        value = input(f"Enter {label} ({allowed_display}): ").strip().lower()
+        if value in allowed:
+            return value
+        print(f"Sorry, '{value}' isn't supported. Please choose: {allowed_display}")
+
+
+# Prompt user for the season and plant type
+season = prompt_choice("season", ALLOWED_SEASONS)
+plant_type = prompt_choice("plant type", ALLOWED_PLANT_TYPES)
 
 # Variable to hold gardening advice
 advice = ""
